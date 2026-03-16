@@ -105,9 +105,10 @@ class DotGraph:
       for n, p in self.props.items():
         if skip and skip in n:
           continue
-        if prefix and not n.startswith(prefix):
-          continue
-        n = n.removeprefix(prefix)
+        if prefix:
+          if not n.startswith(prefix):
+            continue
+          n = n.removeprefix(prefix)
 
         file.write(f"  \"{esc(n)}\" [{p}];\n")
 
